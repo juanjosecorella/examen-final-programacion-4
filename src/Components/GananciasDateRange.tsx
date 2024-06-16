@@ -10,14 +10,6 @@ const GananciasDateRange = () => {
     const { routes } = useContext(MyContext);
     const { ganancias, getGanancias } = useGetGananciasDateRange();
 
-    if (routes === LoadState.Failure) {
-        return <div>Algo salio mal...</div>
-    }
-
-    if (routes === LoadState.Loading) {
-        return <div>Cargando</div>
-    }
-
     return (
         <div className="ganancias-area">
             <form onSubmit={handleSubmit(getGanancias)}>

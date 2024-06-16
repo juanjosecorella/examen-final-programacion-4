@@ -60,7 +60,7 @@ const Appointments = () => {
                     }
                 </select>
                 </div>
-                <div>Precio: {precio === LoadState.Failure ? "algo salio mal" : precio === LoadState.Loading ? "cargando..." : precio.precio} ₡</div>
+                <div>Precio: {precio === LoadState.Failure ? "algo salio mal" : precio === LoadState.Loading ? "cargando..." : `${precio.precio}₡`}</div>
                 <button type="submit">Comprar</button>
             </form>
         </>

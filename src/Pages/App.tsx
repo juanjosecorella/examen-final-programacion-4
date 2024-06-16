@@ -5,20 +5,36 @@ import './App.css'
 import { Routes, Route } from 'react-router-dom'
 
 import useGetRoutes from '../api/useGetRoutes'
-import { useEffect } from 'react'
+import { useContext, useEffect } from 'react'
 
 import { Link } from 'react-router-dom'
 
+import useGetMenu from '../api/useGetMenu'
+import MyContext from '../Context/MyContext'
+import LoadState from '../api/LoadState'
+
 const App = () => {
-    let getRoutes = useGetRoutes();
+    let { pages } = useContext(MyContext);
     
-    useEffect(getRoutes, []);
+    let getRoutes = useGetRoutes();
+    let getMenu = useGetMenu();
+    
+    useEffect(() => {getRoutes(); getMenu()}, []);
+
+    if (pages === LoadState.Failure) {
+        return <div>Algo salio mal...</div>
+    }
+
+    if (pages === LoadState.Loading || pages === undefined) {
+        return <div>Cargando...</div>
+    }
 
     return (
         <div className='app'>
             <ul className="navbar">
-                <li><Link to="/">Dashboard</Link></li>
-                <li><Link to="reservas">Reservas</Link></li>
+                {
+                    pages.map(page => <li><Link key={page.id} to={page.direccion}>{page.titulo}</Link></li>)
+                }
             </ul>
             <Routes>
                 <Route path="/" element={<Dashboard />} />

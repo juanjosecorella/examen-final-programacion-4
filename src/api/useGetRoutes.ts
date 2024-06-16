@@ -21,7 +21,6 @@ const useGetRoutes = () => {
         .catch(e => {
             if (e.message) {
                 alert(`Error: ${e.message}`)
-                return;
             }
             console.log(e);
             setRoutes(LoadState.Failure);
