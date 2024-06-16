@@ -2,4 +2,21 @@
     font-family: "Montserrat", sans-serif;
     font-optical-sizing: auto;
     font-style: normal;
+
+    margin: 0;
+    padding: 0;
+}
+
+.navbar {
+    list-style: none;
+
+    background-color: chocolate;
+
+    width: 100vw;
+    margin: 0;
+    padding: 0;
+}
+
+.navbar a {
+    font-weight: 500;
 }

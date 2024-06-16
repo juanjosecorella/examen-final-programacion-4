@@ -1,6 +1,8 @@
-import { useState } from 'react'
-import HasTravelled from '../Components/HasTravelled';
-import { Link } from 'react-router-dom';
+import HasTravelled from '../Components/HasTravelledRoute';
+import HasTravelledDateRange from '../Components/HasTravelledDateRange';
+import Ganancias from '../Components/Ganancias';
+import GananciasDateRange from '../Components/GananciasDateRange';
+
 
 const Dashboard = () => {
 
@@ -8,8 +10,9 @@ const Dashboard = () => {
         <>
             <h1>Dashboard</h1>
             <HasTravelled />
-            
-            <Link to="reservar">Ir a Reservas</Link>
+            <HasTravelledDateRange />
+            <Ganancias />
+            <GananciasDateRange />
         </>
     )
 }

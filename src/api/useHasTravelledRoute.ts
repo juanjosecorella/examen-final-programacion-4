@@ -1,12 +1,30 @@
 import { useState } from 'react'
-import Resource, { ResourceLoadState } from './Resource';
+import ApiRoute from './ApiRoute';
+import LoadState from './LoadState';
+
+type Response = {
+    numero: number
+}
 
 const useHasTravelled = () => {
-    const [hasTravelled, setHasTravelled] = useState<Resource<number>>({state: ResourceLoadState.Loading, value: 0 });
+    const [hasTravelled, setHasTravelled] = useState<LoadState | Response>(LoadState.Loading);
     
     return {
         getHasTravelled: (data: any) => {
-            setHasTravelled({state: ResourceLoadState.Loaded, value: data.id});
+            if (!data.id) {
+                setHasTravelled(LoadState.Failure);
+                return;
+            }
+
+            fetch(`${ApiRoute}/Tiquete/TiquetesVendidos/${data.id}`)
+            .then(response => response.json())
+            .then(response => {
+                setHasTravelled({numero: response.numero});
+            })
+            .catch(e => {
+                console.log(`Error: ${e}`)
+                setHasTravelled(LoadState.Failure);
+            }) 
         },
         hasTravelled: hasTravelled
     }

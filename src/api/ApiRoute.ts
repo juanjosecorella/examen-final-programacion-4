@@ -1,3 +1,3 @@
-const ApiRoute = "localhost:7064/api"
+const ApiRoute = "https://localhost:7250/api"
 
-export default ApiRoute;
+export default ApiRoute;    

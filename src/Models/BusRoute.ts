@@ -1,8 +1,8 @@
 type BusRoute = {
     id: number,
-    startingPoint: string,
-    endPoint: string,
-    price: number 
+    rutaSalida: string,
+    rutaLlegada: string,
+    precio: number 
 }
 
 export default BusRoute;
